@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+    <h2>House Price Prediction Form</h2>
+
+    <form method="POST"action="{{ url_for('result') }}">
+        <label for="area">Area (in sqft):</label>
+        <input type="number" id="area" name="area" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="bhk">BHK:</label>
+        <input type="number" id="bhk" name="bhk" min="1" required>
+
+        <label><input type="checkbox" id="new" name="new" value="on"> New</label>
+        <label><input type="checkbox" name="gymnasium" value="on"> Gymnasium</label>
+        <label><input type="checkbox" name="lift_available" value="on"> Lift Available</label>
+        <label><input type="checkbox" name="car_parking" value="on"> Car Parking</label>
+        <label><input type="checkbox" name="childrens_play_area" value="on"> Children's Play Area</label>
+        <label><input type="checkbox" name="landscaped_gardens" value="on"> Landscaped Gardens</label>
+        <label><input type="checkbox" name="indoor_games" value="on"> Indoor Games</label>
+        <label><input type="checkbox" name="gas_connection" value="on"> Gas Connection</label>
+        <label><input type="checkbox" name="jogging_track" value="on"> Jogging Track</label>
+        <label><input type="checkbox" name="swimming_pool" value="on"> Swimming Pool</label>
+
+        <input type="submit" value="Predict Price">
+    </form>
+    
+   
+</body>
+</html>
