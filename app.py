@@ -1,12 +1,16 @@
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
+import pandas as pd
 
 app = Flask(__name__)
 
 # Load your pre-trained pipeline
 with open('pipeline.pkl', 'rb') as f:
     pipeline = pickle.load(f)
+
+with open('dataframe.pkl', 'rb') as f:
+    df = pickle.load(f)
 
 @app.route('/',methods=['GET','POST'])
 def home():
@@ -21,32 +25,32 @@ def result():
         bhk = int(request.form['bhk'])
 
         # Handle checkboxes correctly
-        new = 1 if 'new' in request.form else 0
-        gymnasium = 1 if 'gymnasium' in request.form else 0
-        lift_available = 1 if 'lift_available' in request.form else 0
-        car_parking = 1 if 'car_parking' in request.form else 0
-        childrens_play_area = 1 if 'childrens_play_area' in request.form else 0
-        landscaped_gardens = 1 if 'landscaped_gardens' in request.form else 0
-        indoor_games = 1 if 'indoor_games' in request.form else 0
-        gas_connection = 1 if 'gas_connection' in request.form else 0
-        jogging_track = 1 if 'jogging_track' in request.form else 0
-        swimming_pool = 1 if 'swimming_pool' in request.form else 0
+        Resale = 1 if 'Resale' in request.form else 0
+        Furnished = 1 if 'Furnished' in request.form else 0
+        parking = 1 if 'parking' in request.form else 0
+        
+        gardens = 1 if 'gardens' in request.form else 0
 
-        garden_area=landscaped_gardens+childrens_play_area+jogging_track
+
+        
         # Prepare the data for prediction
-        features = np.array([[area, location, bhk, new, gymnasium, lift_available, car_parking,
-                             indoor_games, gas_connection,
-                               swimming_pool,garden_area]])
+        features = np.array([[gardens, Resale, area, parking, Furnished,location,
+                            bhk]])
 
-# ['Area', 'Location', 'Bhk', 'New', 'Gymnasium', 'Lift Available',
-#        'Car Parking', 'Indoor Games', 'Gas Connection', 'Swimming Pool',
-#        'Garden_area'
+        a_df=pd.DataFrame(features,columns=['Garden', 'Resale', 'Area', 'Parking', 'Furnished', 'Location', 'BHK'])
 
         # Prediction using the pipeline
-        prediction = pipeline.predict(features)[0]
-        prediction=round(prediction,2)
+        prediction = pipeline.predict(a_df)[0]
+        prediction=round(prediction,3)
+        if prediction >= 1:
+            formatted_prediction = f"{prediction:.2f} Cr"
+        else:
+            formatted_prediction = f"{prediction * 100:.2f} Lakhs"
 
-    return render_template('result.html',prediction=prediction)
+    # Render the result template with the prediction
+    return render_template('result.html', prediction=formatted_prediction)
+
+    
 
 # @app.route('/result')
 # def result():

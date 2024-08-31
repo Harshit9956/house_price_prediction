@@ -1,9 +1,11 @@
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-image: url(background.jpeg);
+            /* background-color: #f8f9fa; */
             margin: 0;
             padding: 20px;
         }
+        
 
         form {
             background-color: #ffffff;
