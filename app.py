@@ -14,7 +14,8 @@ with open('dataframe.pkl', 'rb') as f:
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    return render_template('index1.html')
+    locations=df['Location'].unique().tolist()
+    return render_template('index1.html',locations=locations)
 @app.route('/result', methods=['GET', 'POST'])
 def result():
     prediction = None
