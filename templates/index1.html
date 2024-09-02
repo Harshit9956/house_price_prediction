@@ -11,22 +11,28 @@
 </head>
 <body>
 
-    <h2>House Price Prediction Form</h2>
+    <h1>House Price Prediction </h1>
 
     <form method="POST"action="{{ url_for('result') }}">
         <label for="area">Area (in sqft):</label>
         <input type="number" id="area" name="area" required>
 
-        <label for="location">Location:</label>
+        <!-- <label for="location">Location:</label>
         <!-- Input with a datalist for location -->
-        <input type="text" id="location" name="location" list="locationList" required>
+        <!-- <input type="text" id="location" name="location" list="locationList" required>  -->
+        <label for="location">Location:</label>
+        <select id="location" name="location" class="dropdown">
+            {% for location in locations %}
+                <option value="{{ location }}">{{ location }}</option>
+            {% endfor %}
+        </select>
         
         <!-- Datalist providing the dropdown options -->
-        <datalist id="locationList">
+        <!-- <datalist id="locationList">
             {% for location in locations %}
                 <option value="{{ location }}">
             {% endfor %}
-        </datalist>
+        </datalist> -->
 
         <label for="bhk">BHK:</label>
         <input type="number" id="bhk" name="bhk" min="1" required>
