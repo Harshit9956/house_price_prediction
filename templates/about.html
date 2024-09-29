@@ -1,0 +1,108 @@
+<html>
+<head>
+    <title>About Me</title>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content:flex-end;
+            align-items: center;
+            padding: 20px;
+            margin-right: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .header {
+            background-image: url("{{ url_for('static', filename='about-bg.jpg') }}");
+            background-color: rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 4em;
+            margin: 0;
+            color:black;
+        }
+        .header p {
+            font-size: 1.5em;
+            margin: 10px 0 0;
+            color:black;
+        }
+        .content {
+            word-wrap: break-word;
+            padding: 5px;
+            text-align: center;
+            margin-bottom: 1px;
+        }
+        .Introduction {
+            word-wrap: break-word;
+            padding: 5px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+       
+        
+        
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        
+        <div class="nav-links">
+            <a href="/">HOME</a>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+        </div>
+    </div>
+    <div class="header">
+        <h1>About Me</h1>
+        <p>This is what I do.</p>
+    </div>
+    <div class="content">
+        <h2>About This Project</h2>
+        <p>Welcome to our House Price Prediction tool, designed to provide accurate and reliable price estimates for residential properties based on a range of factors. Our goal is to assist homebuyers, real estate agents, and property investors in making informed decisions when buying or selling homes.</p>
+    </div>
+    <div class="Introduction">
+        <h2>Who We Are</h2>
+        <p>We are a team of data science enthusiasts, passionate about applying machine learning to solve real-world problems. This project is part of a broader initiative to use AI in the real estate domain to empower users with accurate, data-driven insights.
+        </p>
+    </div>
+    
+
+</body>
+<footer>
+    <p>© 2024 House Price Prediction. All rights reserved.</p>
+</footer>
+</html>

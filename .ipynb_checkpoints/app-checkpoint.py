@@ -12,24 +12,10 @@ with open('pipeline.pkl', 'rb') as f:
 with open('dataframe.pkl', 'rb') as f:
     df = pickle.load(f)
 
-
 @app.route('/',methods=['GET','POST'])
 def home():
     locations=df['Location'].unique().tolist()
-    return render_template('home.html',locations=locations)
-
-
-@app.route('/about',methods=['GET','POST'])
-def about():
-    return render_template('about.html')
-@app.route('/form_page',methods=['GET','POST'])
-def index():
-    locations=df['Location'].unique().tolist()
     return render_template('index1.html',locations=locations)
-
-@app.route('/contact')
-def contact():
-    return render_template('contact1.html')
 @app.route('/result', methods=['GET', 'POST'])
 def result():
     prediction = None
